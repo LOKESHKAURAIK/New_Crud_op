@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+		
+</head>
+<body>
+	<h1>Hello this is crud01 project , is running...</h1>
+    <form action="search" method="post">
+        {% csrf_token %}
+        Enter eid<input type="number" name="eid"/>
+        <button>Search</button>
+    </form>
+    <form action="addemp" method="post">
+        {% csrf_token %}
+        Name<input type="text" name="name"/><br/>
+        Salary<input type="number" name="sal"/><br/>
+        Address<input type="text" name="address"/><br/>
+        <button>Add Emp</button>
+    </form>
+    <a href="delete">Delete</a>
+    <table align="center" border="1px">
+    	{%for i in data%}
+        <tr>
+    		<form action="update" method="post">
+                {% csrf_token %}
+                <td>{{i.id}}<input type="hidden" name="id" value="{{i.id}}"/></td>
+                <td><input type="text" name="name" value="{{i.name}}"/></td>
+                <td><input type="number" name="sal" value="{{i.sal}}"/></td>
+                <td><input type="text" name="address" value="{{i.address}}"/></td>
+                <td><button>Update</button></td>
+                <td><a href="del?eid={{i.id}}">Delete</a></td>
+            </form>
+    	</tr>
+    	{%endfor%}
+    </table>
+</body>
+</html>
